@@ -6,7 +6,7 @@ import { sensorValueHis } from "../data/sensorValueHis";
 import Axios from "axios";
 import { useEffect, useState } from "react";
 
-const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
+const TempLineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -25,7 +25,7 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
   };
 
   useEffect(() => {
-    let listSensorValue = ["Power_Plant", "TonR"];
+    let listSensorValue = ["Temp_CHS","Temp_CHR"];
     let returnValue = [];
     let limitData = "30";
     for (let i = 0; i < listSensorValue.length; i++) {
@@ -38,6 +38,7 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
       });
     }
     setSensorValue(returnValue);
+    // console.log("Temp_CHR");
     // console.log(sensorValue);
   }, []);
 
@@ -94,9 +95,9 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
       axisBottom={{
         orient: "bottom",
         tickSize: 0,
-        tickPadding: 2,
+        tickPadding: 5,
         tickRotation: 0,
-        legend: isDashboard ? undefined : "Time", // added
+        legend: isDashboard ? undefined : " Time", // added
         legendOffset: 36,
         legendPosition: "middle",
       }}
@@ -106,13 +107,13 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
         tickSize: 3,
         tickPadding: 5,
         tickRotation: 0,
-        legend: isDashboard ? undefined : "Power Usage (W)", // added
+        legend: isDashboard ? undefined : "Temperature Compare", // added
         legendOffset: -40,
         legendPosition: "middle",
       }}
       enableGridX={false}
       enableGridY={false}
-      pointSize={3}
+      pointSize={4}
       pointColor={{ theme: "background" }}
       pointBorderWidth={2}
       pointBorderColor={{ from: "serieColor" }}
@@ -148,4 +149,4 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
   );
 };
 
-export default LineChart;
+export default TempLineChart;

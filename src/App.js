@@ -15,6 +15,12 @@ import Geography from "./scenes/geography";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import Calendar from "./scenes/calendar/calendar";
+import Daizo from "./scenes/daizo";
+import DaizoGetRequest from "./scenes/daizo_demo";
+import DaizoGarph from "./scenes/daizo_garph";
+
+import Daizo_GarphTemp from "./scenes/daizo_garphTemp";
+import Kobatech from "./scenes/kobatech/kobatech";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -29,8 +35,13 @@ function App() {
           <main className="content">
             <Topbar setIsSidebar={setIsSidebar} />
             <Routes>
-              <Route path="/" element={<Dashboard />} />
+              <Route path="/" element={<Daizo />} />
+              <Route path="/dazodash" element={<Daizo />} />
+              <Route path="/daizodemo" element={<DaizoGetRequest />} />
+              <Route path="/daizopower" element={<DaizoGarph />} />
+              <Route path="/daizotemp" element={<Daizo_GarphTemp />} />
               <Route path="/team" element={<Team />} />
+              <Route path="/kobatech" element={<Kobatech />} />
               <Route path="/contacts" element={<Contacts />} />
               <Route path="/invoices" element={<Invoices />} />
               <Route path="/form" element={<Form />} />

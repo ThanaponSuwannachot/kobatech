@@ -1,0 +1,166 @@
+{
+    "dataUpdates": [
+      {
+        "dataValue": {
+          "timestamp": "2023-01-22T18:55:00.9217585Z", 
+          "value": {
+            "dataType": "UInt32", 
+            "value": 257339
+          }
+        }, 
+        "name": "Active Imp AMCC 2 DB 4"
+      }, 
+      {
+        "dataValue": {
+          "timestamp": "2023-01-22T18:54:53.7892027Z", 
+          "value": {
+            "dataType": "UInt32", 
+            "value": 1125139
+          }
+        }, 
+        "name": "Active Imp AMCC2"
+      }, 
+      {
+        "dataValue": {
+          "timestamp": "2023-01-22T18:55:15.6696413Z", 
+          "value": {
+            "dataType": "UInt32", 
+            "value": 10245363
+          }
+        }, 
+        "name": "Active Imp DB2"
+      }, 
+      {
+        "dataValue": {
+          "timestamp": "2023-01-22T18:55:29.8451628Z", 
+          "value": {
+            "dataType": "Int32", 
+            "value": 1240184
+          }
+        }, 
+        "name": "Active Power total AMCC 2 DB 4"
+      }, 
+      {
+        "dataValue": {
+          "timestamp": "2023-01-22T18:54:50.4157343Z", 
+          "value": {
+            "dataType": "Int32", 
+            "value": 1411234
+          }
+        }, 
+        "name": "Active Power total AMCC1"
+      }, 
+      {
+        "dataValue": {
+          "timestamp": "2023-01-22T18:54:45.4427131Z", 
+          "value": {
+            "dataType": "Int32", 
+            "value": 5248411
+          }
+        }, 
+        "name": "Active Power total DB2"
+      }, 
+      {
+        "dataValue": {
+          "timestamp": "2023-01-22T18:54:59.8292793Z", 
+          "value": {
+            "dataType": "Double", 
+            "value": 31.099999999999998
+          }
+        }, 
+        "name": "Amb"
+      }, 
+      {
+        "dataValue": {
+          "timestamp": "2023-01-22T18:55:19.0058805Z", 
+          "value": {
+            "dataType": "Double", 
+            "value": 2.9
+          }
+        }, 
+        "name": "Dif Pressure"
+      }, 
+      {
+        "dataValue": {
+          "timestamp": "2023-01-22T18:55:19.0058805Z", 
+          "value": {
+            "dataType": "Double", 
+            "value": 50
+          }
+        }, 
+        "name": "Hummidity"
+      }, 
+      {
+        "dataValue": {
+          "timestamp": "2023-01-22T18:55:30.1219961Z", 
+          "value": {
+            "dataType": "Int32", 
+            "value": 64885
+          }
+        }, 
+        "name": "Power Plant"
+      }, 
+      {
+        "dataValue": {
+          "timestamp": "2023-01-22T18:54:50.6626588Z", 
+          "value": {
+            "dataType": "Double", 
+            "value": 26.5
+          }
+        }, 
+        "name": "TEMP WD"
+      }, 
+      {
+        "dataValue": {
+          "timestamp": "2023-01-22T18:55:28.0803526Z", 
+          "value": {
+            "dataType": "Double", 
+            "value": 23.3
+          }
+        }, 
+        "name": "Temp_CDS"
+      }, 
+      {
+        "dataValue": {
+          "timestamp": "2023-01-22T18:55:06.8061393Z", 
+          "value": {
+            "dataType": "Double", 
+            "value": 9.700000000000001
+          }
+        }, 
+        "name": "Temp_CHR"
+      }, 
+      {
+        "dataValue": {
+          "timestamp": "2023-01-22T18:55:21.0245103Z", 
+          "value": {
+            "dataType": "Double", 
+            "value": 8.4
+          }
+        }, 
+        "name": "Temp_CHS"
+      }, 
+      {
+        "dataValue": {
+          "timestamp": "2023-01-22T18:55:18.8964974Z", 
+          "value": {
+            "dataType": "Single", 
+            "value": 0.9818345
+          }
+        }, 
+        "name": "Plant Efficiency"
+      }, 
+      {
+        "dataValue": {
+          "timestamp": "2023-01-22T18:55:08.895776Z", 
+          "value": {
+            "dataType": "Single", 
+            "value": 66.20261
+          }
+        }, 
+        "name": "Ton R"
+      }
+    ], 
+    "datetime": "2023-01-22T18:55:28.031Z", 
+    "siteName": "Daizo"
+  }
