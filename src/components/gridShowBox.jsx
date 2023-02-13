@@ -30,11 +30,11 @@ const GridShowBox = ({
   const colors = tokens(theme.palette.mode);
 
   return (
-    <Box width="100%" m="5 30px">
+    <Box width="100%" m="3 20px">
       <Box
         sx={{
           boxShadow: 1,
-          borderRadius: 2,
+          borderRadius: 1,
           p: 2,
           //   minWidth: 300,
         }}

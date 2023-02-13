@@ -16,9 +16,8 @@ import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutl
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
-import WaterIcon from '@mui/icons-material/Water';
-import AssignmentReturnedIcon from '@mui/icons-material/AssignmentReturned';
-
+import WaterIcon from "@mui/icons-material/Water";
+import AssignmentReturnedIcon from "@mui/icons-material/AssignmentReturned";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -83,7 +82,7 @@ const Sidebar = () => {
                 ml="15px"
               >
                 <Typography variant="h3" color={colors.grey[100]}>
-                THS Innovation
+                  THS Innovation
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
@@ -120,51 +119,49 @@ const Sidebar = () => {
           )} */}
 
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
-          {/* <Item
+            {/* <Item
               title="Dashboard"
               to="/"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             /> */}
-          <Item
-              title="Daizo Dashboard"
+            <Item
+              title="Kobatech Dashboard"
               to="/"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
-          <Item
-              title="Daizo Sensor List"
-              to="/daizodemo"
+            <Item
+              title="Kobatech Sensor List"
+              to="/kobatechdemo"
               icon={<AssignmentReturnedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Daizo Power Usage"
-              to="/daizopower"
+              title="Kobatech Power Usage"
+              to="/kobatechpower"
               icon={<WaterIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Daizo Temperature"
-              to="/daizotemp"
+              title="Kobatech Temperature"
+              to="/kobatechtemp"
               icon={<WaterIcon />}
               selected={selected}
               setSelected={setSelected}
             />
 
-          {/* <Item
+            {/* <Item
               title="Kobatech Dashboard"
               to="/kobatech"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             /> */}
-
-
 
             {/* <Typography
               variant="h6"

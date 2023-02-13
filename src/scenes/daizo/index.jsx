@@ -39,14 +39,16 @@ const Daizo = () => {
 
   const getApi = async () => {
     const response = await Axios.get(
-      "http://203.150.199.47:3002/api/v1/getAllLast?siteName=daizo"
+      "https://api-chiller-iots.thssoft.com/api/v1/getAllLast?siteName=kobatech"
     );
     return response.data;
   };
 
   useEffect(() => {
     getApi().then((response) => {
+      // console.log(sensorValueMoc);
       setSensorValue(response);
+      console.log(response);
     });
   }, []);
 
@@ -57,10 +59,8 @@ const Daizo = () => {
   }
 
   var PlantEfficiency = findSensorValue("PlantEfficiency");
-  var APT_AMCC1 = findSensorValue("APT_AMCC1");
-  var APT_AMCC2 = findSensorValue("APT_AMCC2");
-  var APT_DB1 = findSensorValue("APT_DB1");
-  var APT_DB2 = findSensorValue("Power_CDP2");
+  var APT_AMCC1 = findSensorValue("APT_Cooling");
+  var APT_AMCC2 = findSensorValue("APT_Chiller");
 
   var TonR = findSensorValue("TonR");
   var Temp_CHS = findSensorValue("Temp_CHS");
@@ -72,16 +72,13 @@ const Daizo = () => {
   var Temp_CDS = findSensorValue("Temp_CDS");
 
   var FlowRate_CHR = findSensorValue("FlowRate_CHR");
-  var FlowRate_CDR = findSensorValue("FlowRate_CDR");
-
-  // console.log(APT_DB2[0].data_value)
 
   return (
     <Box m="20px">
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Header
-          title={"DAIZO CHILLER SYSTEM"}
+          title={"KOBATECH CHILLER SYSTEM"}
           subtitle="Welcome to your chiller dashboard"
         />
         <Box>
@@ -94,6 +91,7 @@ const Daizo = () => {
               padding: "10px 20px",
             }}
           >
+            {/* da */}
             <ThumbUpAltIcon sx={{ mr: "10px" }} />
             {"Plant Efficiency : " +
               Number.parseFloat(PlantEfficiency[0].data_value).toFixed(2) +
@@ -104,7 +102,7 @@ const Daizo = () => {
         {/* <Box>
         
         </Box> */}
-        <Box>{PlantEfficiency[0].data_timestamp}</Box>
+        <Box>{TonR[0].data_timestamp}</Box>
       </Box>
 
       {/* GRID & CHARTS */}
@@ -126,25 +124,14 @@ const Daizo = () => {
         >
           <GridShowBox
             title={"Power Plant"}
-            mainValue={
-              APT_AMCC1[0].data_value +
-              APT_AMCC2[0].data_value +
-              APT_DB1[0].data_value +
-              APT_DB2[0].data_value
-            }
-            mainUnit={APT_AMCC1[0].data_type}
-            sensorName1={"AMCC1" + " :"}
+            mainValue={APT_AMCC1[0].data_value + APT_AMCC2[0].data_value}
+            mainUnit={"kW"}
+            sensorName1={"COOLING" + " :"}
             valueName1={APT_AMCC1[0].data_value}
-            unitName1={APT_AMCC1[0].data_type}
-            sensorName2={"AMCC2" + " :"}
+            unitName1={"kW"}
+            sensorName2={"CHILLER" + " :"}
             valueName2={APT_AMCC2[0].data_value}
-            unitName2={APT_AMCC2[0].data_type}
-            sensorName3={"CH1" + " :"}
-            valueName3={APT_DB1[0].data_value}
-            unitName3={APT_DB1[0].data_type}
-            sensorName4={"CH2" + " :"}
-            valueName4={APT_DB2[0].data_value}
-            unitName4={APT_DB2[0].data_type}
+            unitName2={"kW"}
           />
         </Box>
         <Box
@@ -156,18 +143,18 @@ const Daizo = () => {
           justifyContent="center"
         >
           <GridShowBox
-            title={"Building Load"}
+            title={"Factory Cooling Load"}
             mainValue={TonR[0].data_value.toFixed(2)}
-            mainUnit={TonR[0].data_type}
+            mainUnit={"RT"}
             sensorName1={Temp_CHS[0].data_name + " :"}
             valueName1={Temp_CHS[0].data_value}
-            unitName1={Temp_CHS[0].data_type}
+            unitName1={"°C"}
             sensorName2={Temp_CHR[0].data_name + " :"}
             valueName2={Temp_CHR[0].data_value}
-            unitName2={Temp_CHR[0].data_type}
+            unitName2={"°C"}
             sensorName3={FlowRate_CHR[0].data_name + " :"}
             valueName3={FlowRate_CHR[0].data_value}
-            unitName3={FlowRate_CHR[0].data_type}
+            unitName3={"GPM"}
           />
         </Box>
         <Box
@@ -181,13 +168,13 @@ const Daizo = () => {
           <GridShowBox
             title={"Accumulate"}
             mainValue={ACC_Plant_Efficiency[0].data_value.toFixed(2)}
-            mainUnit={"kWh/RT"}
+            mainUnit={"kW/RT"}
             sensorName1={"Accumulate RTh" + " :"}
             valueName1={ACC_TonR[0].data_value}
-            unitName1={ACC_TonR[0].data_type}
+            unitName1={"RTh"}
             sensorName2={"Accumulate " + " :"}
             valueName2={ACC_PowerPlant[0].data_value}
-            unitName2={ACC_PowerPlant[0].data_type}
+            unitName2={"kWh"}
           />
         </Box>
 
@@ -210,17 +197,18 @@ const Daizo = () => {
               <br />
             </Box>
             <Typography variant="h3" fontWeight="600" color={colors.grey[100]}>
-              Power Plant vs Building Load
+              Power Plant vs Factory Cooling Load
             </Typography>
           </Box>
           <Box sx={{ flexDirection: "column" }}>
             <Box>
               <Box
+                sx={{ flexDirection: "column" }}
                 mt="25px"
                 p="0 30px"
                 display="flex "
-                justifyContent="space-between"
-                alignItems="center"
+                justifyContent="column"
+                alignItems="start"
               >
                 <Box>
                   <Typography
@@ -228,7 +216,7 @@ const Daizo = () => {
                     fontWeight="600"
                     color={colors.grey[100]}
                   >
-                    Power Usage(kW)
+                    Power Plant(kW)
                   </Typography>
                   <Typography
                     variant="h3"
@@ -236,20 +224,33 @@ const Daizo = () => {
                     color={colors.greenAccent[500]}
                   >
                     {(
-                      APT_AMCC1[0].data_value +
-                      APT_AMCC2[0].data_value +
-                      APT_DB1[0].data_value +
-                      APT_DB2[0].data_value
+                      APT_AMCC1[0].data_value + APT_AMCC2[0].data_value
                     ).toFixed(2)}
                   </Typography>
                 </Box>
                 <Box>
+                  <Typography
+                    variant="h5"
+                    fontWeight="600"
+                    color={colors.grey[100]}
+                  >
+                    Factory Cooling Load(RT)
+                  </Typography>
+                  <Typography
+                    variant="h3"
+                    fontWeight="bold"
+                    color={colors.greenAccent[500]}
+                  >
+                    {TonR[0].data_value.toFixed(2)}
+                  </Typography>
+                </Box>
+                {/* <Box>
                   <IconButton>
                     <DownloadOutlinedIcon
                       sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
                     />
                   </IconButton>
-                </Box>
+                </Box> */}
               </Box>
               <Box height="250px" m="-20px 0 0 0">
                 <LineChart isDashboard={true} />
@@ -271,7 +272,7 @@ const Daizo = () => {
                     fontWeight="600"
                     color={colors.grey[100]}
                   >
-                    Plant Efficiency
+                    Plant Efficiency (kW/RT)
                   </Typography>
                   <Typography
                     variant="h3"
@@ -314,17 +315,18 @@ const Daizo = () => {
               <br />
             </Box>
             <Typography variant="h3" fontWeight="600" color={colors.grey[100]}>
-              Temp.S vs Temp.R
+              Chilled water temperature and flowrate
             </Typography>
           </Box>
-          <Box sx={{ flexDirection: "column" }}>
-            <Box>
+          <Box>
+            <Box sx={{ flexDirection: "column" }}>
               <Box
+                sx={{ flexDirection: "column" }}
                 mt="25px"
                 p="0 30px"
                 display="flex "
-                justifyContent="space-between"
-                alignItems="center"
+                justifyContent="column"
+                alignItems="start"
               >
                 {/* ###########Temperature########### */}
                 <Box>
@@ -333,22 +335,31 @@ const Daizo = () => {
                     fontWeight="600"
                     color={colors.grey[100]}
                   >
-                    Temperature( °C)
+                    Supply Temperature (°C)
                   </Typography>
                   <Typography
                     variant="h3"
                     fontWeight="bold"
                     color={colors.greenAccent[500]}
                   >
-                    {Temp_CHS[0].data_value}
+                    {Temp_CHS[0].data_value.toFixed(2)}
                   </Typography>
                 </Box>
                 <Box>
-                  <IconButton>
-                    <DownloadOutlinedIcon
-                      sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
-                    />
-                  </IconButton>
+                  <Typography
+                    variant="h5"
+                    fontWeight="600"
+                    color={colors.grey[100]}
+                  >
+                    Return Temperature (°C)
+                  </Typography>
+                  <Typography
+                    variant="h3"
+                    fontWeight="bold"
+                    color={colors.greenAccent[500]}
+                  >
+                    {Temp_CHR[0].data_value.toFixed(2)}
+                  </Typography>
                 </Box>
               </Box>
               <Box height="250px" m="-20px 0 0 0">
@@ -370,7 +381,7 @@ const Daizo = () => {
                     fontWeight="600"
                     color={colors.grey[100]}
                   >
-                    Flow Rate CHR
+                    Flow Rate (GPM)
                   </Typography>
                   <Typography
                     variant="h3"
@@ -395,174 +406,7 @@ const Daizo = () => {
           </Box>
         </Box>
 
-        <Box
-          gridColumn="span 12"
-          gridRow="span 2"
-          backgroundColor={colors.primary[400]}
-          overflow="auto"
-        >
-          <Box
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-            borderBottom={`4px solid ${colors.primary[500]}`}
-            colors={colors.grey[100]}
-            p="15px"
-          >
-            <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
-              SENSOR UPDATE
-            </Typography>
-          </Box>
-          {sensorValue.map((value, i) => (
-            <Box
-              key={`${value.data_name}-${i}`}
-              display="flex"
-              justifyContent="space-between"
-              alignItems="center"
-              borderBottom={`4px solid ${colors.primary[500]}`}
-              p="15px"
-            >
-              <Box>
-                <Typography
-                  color={colors.greenAccent[500]}
-                  variant="h5"
-                  fontWeight="600"
-                >
-                  {value.data_value}
-                </Typography>
-                <Typography color={colors.grey[100]}>
-                  {value.data_name}
-                </Typography>
-              </Box>
-              <Box color={colors.grey[100]}>{value.data_type}</Box>
-              <Box
-                backgroundColor={colors.greenAccent[500]}
-                p="5px 10px"
-                borderRadius="4px"
-              >
-                ???
-                {/* ${value.data_type} */}
-              </Box>
-            </Box>
-          ))}
-        </Box>
-
-        {/* Botttom Analysis */}
-        {/* card1 */}
-        <Box
-          gridColumn="span 4"
-          gridRow="span 2"
-          backgroundColor={colors.primary[400]}
-          p="30px"
-        >
-          <Typography variant="h5" fontWeight="600">
-            {"ACC_RTh"}
-          </Typography>
-          <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            mt="25px"
-          >
-            <ProgressCircle
-              size="125"
-              progress={ACC_TonR[0].data_value * 0.0001}
-            />
-            <Typography
-              variant="h5"
-              color={colors.greenAccent[500]}
-              sx={{ mt: "15px" }}
-            >
-              {ACC_TonR[0].data_value}
-            </Typography>
-            <Typography>{ACC_TonR[0].data_type}</Typography>
-          </Box>
-        </Box>
-        <Box
-          gridColumn="span 4"
-          gridRow="span 2"
-          backgroundColor={colors.primary[400]}
-          p="30px"
-        >
-          <Typography variant="h5" fontWeight="600">
-            {"ACC_kWh"}
-          </Typography>
-          <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            mt="25px"
-          >
-            <ProgressCircle
-              size="125"
-              progress={ACC_PowerPlant[0].data_value * 0.0001}
-            />
-            <Typography
-              variant="h5"
-              color={colors.greenAccent[500]}
-              sx={{ mt: "15px" }}
-            >
-              {ACC_PowerPlant[0].data_value}
-            </Typography>
-            <Typography>{ACC_PowerPlant[0].data_type}</Typography>
-          </Box>
-        </Box>
-        <Box
-          gridColumn="span 4"
-          gridRow="span 2"
-          backgroundColor={colors.primary[400]}
-          p="30px"
-        >
-          <Typography variant="h5" fontWeight="600">
-            {"ACC_Plant Efficiency"}
-          </Typography>
-          <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            mt="25px"
-          >
-            <ProgressCircle
-              size="125"
-              progress={ACC_Plant_Efficiency[0].data_value * 10}
-            />
-            <Typography
-              variant="h5"
-              color={colors.greenAccent[500]}
-              sx={{ mt: "15px" }}
-            >
-              {ACC_Plant_Efficiency[0].data_value}
-            </Typography>
-            <Typography>{ACC_Plant_Efficiency[0].data_type}</Typography>
-          </Box>
-        </Box>
-        {/* ########### */}
-        {/* <Box
-          gridColumn="span 5"
-          gridRow="span 2"
-          backgroundColor={colors.primary[400]}
-          p="30px"
-        >
-          <Typography variant="h5" fontWeight="600">
-          HZ_CDP2
-          </Typography>
-          <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            mt="25px"
-          >
-            <ProgressCircle size="125" />
-            <Typography
-              variant="h5"
-              color={colors.greenAccent[500]}
-              sx={{ mt: "15px" }}
-            >
-              ??? Hz status ???
-            </Typography>
-            <Typography>???%100</Typography>
-          </Box>
-        </Box> */}
+        
       </Box>
     </Box>
   );

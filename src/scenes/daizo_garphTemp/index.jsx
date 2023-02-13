@@ -10,6 +10,7 @@ import { sensorValueMoc } from "../../data/sensorValue";
 import TempLineChart from "../../components/TempLineChart";
 import FlowRateLineChart from "../../components/FlowRateLineChart";
 
+
 const DaizoGarphTemp = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -18,7 +19,7 @@ const DaizoGarphTemp = () => {
 
   const getApi = async () => {
     const response = await Axios.get(
-      "http://203.150.199.47:3002/api/v1/getAllLast?siteName=daizo"
+      "https://api-chiller-iots.thssoft.com/api/v1/getAllLast?siteName=kobatech"
     );
     return response.data;
   };
@@ -53,7 +54,10 @@ const DaizoGarphTemp = () => {
   ];
   return (
     <Box m="20px">
-      <Header title="Temperature Analysis" subtitle="Graph compare Temperature usage" />
+      <Header
+        title="Temperature Analysis"
+        subtitle="Graph compare Temperature usage"
+      />
       <Box height="25vh">
         <TempLineChart />
       </Box>

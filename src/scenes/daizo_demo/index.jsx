@@ -16,7 +16,7 @@ const Contacts = () => {
 
   const getApi = async () => {
     const response = await Axios.get(
-      "http://203.150.199.47:3002/api/v1/getAllLast?siteName=daizo"
+      "https://api-chiller-iots.thssoft.com/api/v1/getAllLast?siteName=kobatech"
     );
     return response.data;
   };
@@ -52,7 +52,7 @@ const Contacts = () => {
 
   return (
     <Box m="20px">
-      <Header title="DAIZO CHILLER" subtitle="Daizo Chiller sensor Value" />
+      <Header title="Kobatech CHILLER" subtitle="Kobatech Chiller Sensor Value List" />
       <Box
         m="40px 0 0 0"
         height="75vh"

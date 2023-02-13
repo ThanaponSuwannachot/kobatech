@@ -17,7 +17,7 @@ const DaizoGarph = () => {
 
   const getApi = async () => {
     const response = await Axios.get(
-      "http://203.150.199.47:3002/api/v1/getAllLast?siteName=daizo"
+      "https://api-chiller-iots.thssoft.com/api/v1/getAllLast?siteName=kobatech"
     );
     return response.data;
   };
@@ -52,7 +52,10 @@ const DaizoGarph = () => {
   ];
   return (
     <Box m="20px">
-      <Header title="Power Analysis" subtitle="Graph compare power consumption" />
+      <Header
+        title="Power Analysis"
+        subtitle="Graph compare power consumption"
+      />
       <Box height="25vh">
         <LineChart />
       </Box>

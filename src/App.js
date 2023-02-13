@@ -36,10 +36,10 @@ function App() {
             <Topbar setIsSidebar={setIsSidebar} />
             <Routes>
               <Route path="/" element={<Daizo />} />
-              <Route path="/dazodash" element={<Daizo />} />
-              <Route path="/daizodemo" element={<DaizoGetRequest />} />
-              <Route path="/daizopower" element={<DaizoGarph />} />
-              <Route path="/daizotemp" element={<Daizo_GarphTemp />} />
+              <Route path="/kobatechdash" element={<Daizo />} />
+              <Route path="/kobatechdemo" element={<DaizoGetRequest />} />
+              <Route path="/kobatechpower" element={<DaizoGarph />} />
+              <Route path="/kobatechtemp" element={<Daizo_GarphTemp />} />
               <Route path="/team" element={<Team />} />
               <Route path="/kobatech" element={<Kobatech />} />
               <Route path="/contacts" element={<Contacts />} />
